@@ -2,7 +2,7 @@ clear
 
 set -xe
 
-CC="gcc"
+CC="clang"
 CFLAGS="-g -DTESTS -Wall -Wextra -pedantic"
 
 directory="$1"
