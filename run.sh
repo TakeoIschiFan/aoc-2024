@@ -3,7 +3,7 @@ clear
 set -xe
 
 CC="clang"
-CFLAGS="-g -DTESTS -Wall -Wextra -pedantic"
+CFLAGS="-g -DTESTS -Wall -Wextra -pedantic -lm"
 
 directory="$1"
 
