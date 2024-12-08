@@ -3,11 +3,11 @@ clear
 set -xe
 
 CC="clang"
-CFLAGS="-g -DTESTS -Wall -Wextra -pedantic -lm"
+CFLAGS="-g -Wall -Wextra -pedantic -lm"
 
 directory="$1"
 
-SRC="$1/main.c"
+SRC="$1/main.c common/*.c"
 
 $CC $CFLAGS -o out $SRC
 
