@@ -23,6 +23,8 @@ int grid_size(grid* g);
 
 char grid_get_at_coord(grid* g, coord c);
 void grid_set_at_coord(grid* g, coord c, char x);
+int grid_get_int_at_coord(grid* g, coord c);
+void grid_set_int_at_coord(grid* g, coord c, int x);
 int grid_count(grid* g, char x);
 
 coord grid_coord_from_1d(grid* g, int index);
