@@ -30,8 +30,8 @@ void grid_load(grid* g, FILE* txt) {
     }
 }
 void grid_print(grid* g) {
-    for (int i = 0; i < g->height; i++) {
-        for (int j = 0; j < g->width; j++) {
+    for (unsigned int i = 0; i < g->height; i++) {
+        for (unsigned int j = 0; j < g->width; j++) {
             coord c = {i, j};
             printf("%c ", grid_get_at_coord(g, c));
         }
@@ -48,6 +48,13 @@ inline char grid_get_at_coord(grid* g, coord c) {
 
 inline void grid_set_at_coord(grid* g, coord c, char x) {
     g->content[grid_1d_from_coord(g, c)] = x;
+}
+
+int grid_get_int_at_coord(grid* g, coord c) {
+    return (int)(g->content[grid_1d_from_coord(g, c)] - '0');
+};
+void grid_set_int_at_coord(grid* g, coord c, int x) {
+    g->content[grid_1d_from_coord(g, c)] = (char)(x + '0');
 }
 
 int grid_count(grid* g, char x) {
@@ -67,16 +74,15 @@ coord grid_coord_from_1d(grid* g, int index) {
 }
 
 inline int grid_1d_from_coord(grid* g, coord c) {
-    int test = c.row * g->width + c.col;
     return c.row * g->width + c.col;
 }
 
 bool grid_coord_in_bounds(grid* g, coord c) {
-    if (c.row < 0 || c.row >= g->height) {
+    if (c.row < 0 || c.row >= (int)g->height) {
         return false;
     }
 
-    if (c.col < 0 || c.col >= g->width) {
+    if (c.col < 0 || c.col >= (int)g->width) {
         return false;
     }
 
