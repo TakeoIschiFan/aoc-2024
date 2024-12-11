@@ -52,7 +52,7 @@ inline void grid_set_at_coord(grid* g, coord c, char x) {
 
 int grid_get_int_at_coord(grid* g, coord c) {
     return (int)(g->content[grid_1d_from_coord(g, c)] - '0');
-};
+}
 void grid_set_int_at_coord(grid* g, coord c, int x) {
     g->content[grid_1d_from_coord(g, c)] = (char)(x + '0');
 }
