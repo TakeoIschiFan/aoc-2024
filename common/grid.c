@@ -16,6 +16,20 @@ grid* grid_create(unsigned int width, unsigned int height) {
     return g;
 }
 
+grid* grid_create_with(unsigned int width, unsigned int height, char c) {
+    char* contents = calloc(sizeof(char), width * height);
+    grid* g = calloc(sizeof(grid), 1);
+    g->width = width;
+    g->height = height;
+    g->content = contents;
+
+    for (unsigned int i = 0; i < height; i++) {
+        for (unsigned int j = 0; j < width; j++) {
+            g->content[i * width + j] = c;
+        }
+    }
+    return g;
+}
 void grid_free(grid* g) {
     free(g->content);
     free(g);
@@ -65,6 +79,25 @@ int grid_count(grid* g, char x) {
         }
     }
     return count;
+}
+
+char* grid_get_horizontal(grid* g, int row) {
+    char* line = malloc((g->width + 1) * sizeof(char));
+
+    memcpy(line, &g->content[row * g->width], g->width);
+    line[g->width] = '\0';
+
+    return line;
+}
+
+char* grid_get_vertical(grid* g, int col) {
+    char* column = malloc((g->height + 1) * sizeof(char));
+
+    for (int i = 0; i < g->height; i++) {
+        column[i] = g->content[i * g->width + col];
+    }
+    column[g->height] = '\0';
+    return column;
 }
 
 coord grid_coord_from_1d(grid* g, int index) {
