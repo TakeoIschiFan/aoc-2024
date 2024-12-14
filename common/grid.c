@@ -1,4 +1,5 @@
 #include "grid.h"
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -93,7 +94,7 @@ char* grid_get_horizontal(grid* g, int row) {
 char* grid_get_vertical(grid* g, int col) {
     char* column = malloc((g->height + 1) * sizeof(char));
 
-    for (int i = 0; i < g->height; i++) {
+    for (unsigned int i = 0; i < g->height; i++) {
         column[i] = g->content[i * g->width + col];
     }
     column[g->height] = '\0';
@@ -122,6 +123,10 @@ bool grid_coord_in_bounds(grid* g, coord c) {
     return true;
 }
 
+coord grid_coord_modulo_bounds(grid* g, coord c) {
+    return (coord){c.row % (g->height - 1), c.col % (g->width - 1)};
+}
+
 inline bool coord_eq(coord c1, coord c2) {
     return c1.row == c2.row && c1.col == c2.col;
 }
@@ -139,4 +144,10 @@ coord coord_minus(coord c1, coord c2) {
 coord coord_times(coord c, int a) {
     coord out = {.row = c.row * a, .col = c.col * a};
     return out;
+}
+
+int modulo(int x, int N) { return (x % N + N) % N; }
+
+coord coord_modulo(coord c, int mod_row, int mod_col) {
+    return (coord){modulo(c.row, mod_row), modulo(c.col, mod_col)};
 }

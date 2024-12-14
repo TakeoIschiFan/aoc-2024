@@ -9,6 +9,6 @@ directory="$1"
 
 SRC="$1/main.c common/*.c"
 
-$CC $CFLAGS -o out $SRC
+$CC $CFLAGS -o out $SRC 
 
 ./out

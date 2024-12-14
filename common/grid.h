@@ -36,8 +36,10 @@ char* grid_get_vertical(grid* g, int col);
 coord grid_coord_from_1d(grid* g, int index);
 int grid_1d_from_coord(grid* g, coord c);
 bool grid_coord_in_bounds(grid* g, coord c);
+coord grid_coord_modulo_bounds(grid* g, coord c);
 
 bool coord_eq(coord c1, coord c2);
 coord coord_plus(coord c1, coord c2);
 coord coord_minus(coord c1, coord c2);
 coord coord_times(coord c, int a);
+coord coord_modulo(coord c, int mod_x, int mod_y);
