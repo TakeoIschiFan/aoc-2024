@@ -61,6 +61,8 @@ inline char grid_get_at_coord(grid* g, coord c) {
     return g->content[grid_1d_from_coord(g, c)];
 }
 
+inline char grid_get_at_1d(grid* g, int i) { return g->content[i]; }
+
 inline void grid_set_at_coord(grid* g, coord c, char x) {
     g->content[grid_1d_from_coord(g, c)] = x;
 }
@@ -80,6 +82,14 @@ int grid_count(grid* g, char x) {
         }
     }
     return count;
+}
+
+coord grid_find_first(grid* g, char x) {
+    for (unsigned int i = 0; i < grid_size(g); i++) {
+        if (g->content[i] == x) {
+            return grid_coord_from_1d(g, i);
+        }
+    }
 }
 
 char* grid_get_horizontal(grid* g, int row) {

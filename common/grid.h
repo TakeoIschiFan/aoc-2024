@@ -23,10 +23,12 @@ void grid_print(grid* g);
 int grid_size(grid* g);
 
 char grid_get_at_coord(grid* g, coord c);
+char grid_get_at_1d(grid* g, int i);
 void grid_set_at_coord(grid* g, coord c, char x);
 int grid_get_int_at_coord(grid* g, coord c);
 void grid_set_int_at_coord(grid* g, coord c, int x);
 int grid_count(grid* g, char x);
+coord grid_find_first(grid* g, char x);
 
 // You get ownership of the string, free after done
 char* grid_get_horizontal(grid* g, int row);
